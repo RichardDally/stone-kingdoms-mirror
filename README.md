@@ -1,1 +1,1 @@
-# stone-kingdoms-mirror
+# Stone Kingdoms packaging
