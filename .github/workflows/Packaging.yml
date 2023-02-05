@@ -1,0 +1,31 @@
+name: Multiplatform binaries package
+
+on:
+  workflow_dispatch:
+    inputs:
+      windows_generator:
+        required: false
+        default: 'Visual Studio 16 2019'
+
+jobs:
+  Windows:
+    name: Create Windows executable
+    runs-on: windows-2019
+
+    steps:
+      - name: Download Love Windows 64 bits
+        uses: suisei-cn/actions-download-file@v1.3.0
+        id: LoveWindows
+        name: Download the file
+        with:
+          url: "https://github.com/love2d/love/releases/download/11.4/love-11.4-win64.zip"
+          target: "."
+
+      - name: Unzip Love Windows 64 bits
+        uses: montudor/action-zip@v1
+        with:
+          args: unzip -qq love-11.4-win64.zip
+
+      - name: Troubleshoot
+        shell: powershell
+        run: ls
